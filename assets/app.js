@@ -74,99 +74,29 @@ $(document).ready(function () {
         $("#destination").val("");
         $("#startTime").val("");
         $("#frequency").val("");
-
-        // $(".form-group")[0].reset();
-
     });
-    var tdMinAway;
+
     var tdName;
     var tdDest;
     var tdStart;
     var tdFreq;
-    var minAway;
+    
     database.ref().on("child_added", function (childSnapshot) {
         var now = moment().format("HH:mm");
         var frequency = parseInt(childSnapshot.val().frequency);
-        // var frequency = moment(childSnapshot.val().frequency, "m").format("HH:mm");
         var startTime = moment(childSnapshot.val().startTime, "HH:mm").format("HH:mm");
-        console.log(childSnapshot.val().startTime);
-        //$(".train-table").append(tRow);
-        console.log(startTime + " started at");
-        // startTime = moment(startTime).format("HH:mm");
-        console.log(now);
+        var timeSince = moment.utc(moment(now,"HH:mm").diff(moment(startTime,"HH:mm"))).format("HH:mm");
+        var mins = moment.duration(timeSince).asMinutes();
+        var minsAway = frequency - (mins % frequency);
+        var nextTrain = moment().add(minsAway, "m").format("HH:mm");
         tdName = $("<td>").append(childSnapshot.val().trainName);
         tdDest = $("<td>").append(childSnapshot.val().destination);
         tdFreq = $("<td>").append(childSnapshot.val().frequency);
-        console.log("hey hey hey! " + moment().add(frequency, "m").format("HH:mm"));
-        
-        
-        minAway = moment(frequency, "m" - (moment("HH:mm").subtract(startTime, "HH:mm")) % frequency, "m").format("m")
-        tdNextTrain = $("<td>").append(moment().add(parseInt(minAway)));
-        console.log("try this " + moment().subtract(startTime, "HH:mm").format("HH:mm"));
-        
-        tdMinAway = $("<td>").append(minAway);
-
-
-
-        var a = moment([2007, 0, 28]);
-        var b = moment([2007, 0, 29]);
-        a.to(b) // "in a day"
-        console.log("now - start time = " + moment().subtract(startTime, "HH:mm").format("HH:mm"));
-        console.log("start time: " + startTime);
-        console.log("now " + now);
-        console.log("frequency " + frequency);
-        console.log("minutes away " + minAway);
-
-        //tdMinAway = $("<td>").append()
-        //tdNext = $("<td>").append(moment(startTime).toNow("HH:mm"));
-        // tdStart = $("<td>").append(childSnapshot.val().startTime);
-        console.log(minAway + " mins away!");
-        var tRow = $("<tr>").append(tdName, tdDest, tdStart, tdFreq, tdNextTrain, tdMinAway);
+        tdNextTrain = $("<td>").append(nextTrain);
+        tdMinsAway = $("<td>").append(minsAway);
+        var tRow = $("<tr>").append(tdName, tdDest, tdStart, tdFreq, tdNextTrain, tdMinsAway);
         $(".train-table").append(tRow);
-        // tData.append(snapshot.val().);
-
-
-
     }, function (errorObject) {
         console.log("Errors handled: " + errorObject.code);
-
-
     });
-
-
-
-
-
-
-
-// DID ALL THE FOLLOWING ON A SEPARATE FILE FOR CLARITY. NEEDS TO BE REFORMATTED TO MEET UP WITH THIS JAVASCRIPT. 
-// BUT IT ALL WORKS.
-    var frequency = "30";
-    var startTime = "5:00";
-    var now = moment().format("HH:mm");
-    var span = moment("21:00", "mm").fromNow();
-    var lapse = moment()
-    var a = moment("21:00");
-    
-    console.log("worky?? " + a.to(now, 'minutes')); // 1
-    console.log(span);
-    console.log(now);
-    console.log(moment().add(frequency, "m").format("HH:mm"));
-    var frequency = 30;
-    // var a = moment([6, 00]);
-    // var b = moment([5, 00]);
-    // var diff = (a.diff(b, "minutes"));
-    // console.log(diff);
-
-    // var now  = "04/09/2013 15:00:00";
-    // var then = "04/09/2013 14:20:30";
-
-    var timeSince = moment.utc(moment(now,"HH:mm").diff(moment(startTime,"HH:mm"))).format("HH:mm");
-    var mins = moment.duration(timeSince).asMinutes();
-    console.log(mins);
-    var minsAway = frequency - (mins % frequency);
-    console.log(minsAway);
-    var nextTrain = moment().add(minsAway, "m").format("HH:mm");
-    console.log(nextTrain);
-
 });
