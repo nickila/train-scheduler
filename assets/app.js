@@ -75,13 +75,13 @@ $(document).ready(function () {
     var nextTrain;
 
     database.ref().on("child_added", function (childSnapshot) {
-        var now = moment().format("HH:mm");
+        var now = moment().format("h:mm A");
         var frequency = parseInt(childSnapshot.val().frequency);
-        var startTime = moment(childSnapshot.val().startTime, "HH:mm").format("HH:mm");
-        var timeSince = moment.utc(moment(now, "HH:mm").diff(moment(startTime, "HH:mm"))).format("HH:mm");
+        var startTime = moment(childSnapshot.val().startTime, "h:mm A").format("h:mm A");
+        var timeSince = moment.utc(moment(now, "h:mm A").diff(moment(startTime, "h:mm A"))).format("h:mm A");
         var mins = moment.duration(timeSince).asMinutes();
         minsAway = frequency - (mins % frequency);
-        nextTrain = moment().add(minsAway, "m").format("HH:mm");
+        nextTrain = moment().add(minsAway, "m").format("h:mm A");
         
         if ((frequency > 0) && (frequency < 500)) {
         tdName = $("<td>").append(childSnapshot.val().trainName);
