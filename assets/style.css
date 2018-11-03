@@ -1,6 +1,18 @@
+body {
+    background-color: lightcyan;
+    font-family: "Krub", sans-serif;
+}
+th {
+    font-size: 24px;
+}
+.train-table {
+    font-size: 20px;
+}
+
 .card-header {
     background-color: #343a40;
     color: white;
+    font-size: 24px;
 }
 
 .table {
@@ -9,9 +21,13 @@
 
 .display-4 {
     color: white;
-    font-size: 8rem;
-    text-align: left;
+    font-size: 9rem;
+    text-align: center;
 
+}
+.center {
+    text-align: center;
+    font-weight: bold;
 }
 
 .lead {
@@ -23,4 +39,16 @@
 .jumbotron {
     background-color: #343a40;
     padding: 30px;
+}
+.form-group {
+    font-size: 20px;
+
+}
+label {
+    font-size: 24px;
+    font-weight: bold;
+
+}
+#trainName {
+    font-size: 20px;
 }

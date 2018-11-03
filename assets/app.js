@@ -9,14 +9,8 @@ $(document).ready(function () {
         messagingSenderId: "109852495499"
     };
     firebase.initializeApp(config);
-
-
-
     // Create a variable to reference the database.
     var database = firebase.database();
-
-
-
     // var now = moment().format("h:mm");
     // console.log(now);
     /*
@@ -30,73 +24,92 @@ $(document).ready(function () {
     arriving in 3 mins because current time minus start time equals 17 mins divided by 5 has a remainder
     of 2 and frequency time minus the remainder of those numbers equals three. So I would need a variable
     for the current time (now).
-    now - startTime
-            
+    now - startTime      
     */
-
-
-    // console.log(now);
     var trainName;
     var destination;
-    // var frequency;
-    //var startTime = ("03:00");
-
-    // console.log(startTimeM);
-    console.log(startTime);
-
-    // var minAway = (frequency - ((now - startTimeM) % frequency));
-    // var nextArrival = moment(startTime).toNow("HH:mm");
-    // console.log(minAway);
-    // console.log(nextArrival);
-
-
-    var newTrain;
-    var newDestination;
-    var newStartTime;
-    var newFrequency;
 
 
     $("#submit").on("click", function (event) {
         event.preventDefault();
-        trainName = $("#trainName").val().trim();
-        destination = $("#destination").val().trim();
-        startTime = $("#startTime").val().trim();
-        frequency = $("#frequency").val().trim();
 
+        if (($("#trainName").val() == "") || ($("#trainName").val() == " ")) {
+            alert("Please enter a valid Train Name"); 
 
-        database.ref().push({
-            trainName: trainName,
-            destination: destination,
-            startTime: startTime,
-            frequency: frequency
-        });
-        $("#trainName").val("");
-        $("#destination").val("");
-        $("#startTime").val("");
-        $("#frequency").val("");
+        } else {
+            trainName = $("#trainName").val().trim();
+        }
+        if (($("#destination").val() == "") || ($("#destination").val() == " ")) {
+            alert("Please enter a valid Destination"); 
+        } else {
+            destination = $("#destination").val().trim();
+        }
+        if (($("#startTime").val() == "") || ($("#startTime").val() == " ")) {
+            alert("Please enter a valid First Train Time");
+        } else {
+            startTime = $("#startTime").val().trim();
+        }
+        // if (($("#frequency").val().isInteger()) && ($("#frequency").val > 0) && ($("#frequency").val < 100)) {
+            if (($("#frequency").val() == "") || ($("#frequency").val() == " ")) {
+                alert("Please enter a valid Frequency");
+            } else {
+            frequency = $("#frequency").val().trim();
+            }
+        
+        
+            database.ref().push({
+                trainName: trainName,
+                destination: destination,
+                startTime: startTime,
+                frequency: frequency
+            });
+           
+       
     });
 
     var tdName;
     var tdDest;
     var tdStart;
     var tdFreq;
-    
+    var minsAway;
+    var nextTrain;
+
     database.ref().on("child_added", function (childSnapshot) {
         var now = moment().format("HH:mm");
         var frequency = parseInt(childSnapshot.val().frequency);
         var startTime = moment(childSnapshot.val().startTime, "HH:mm").format("HH:mm");
-        var timeSince = moment.utc(moment(now,"HH:mm").diff(moment(startTime,"HH:mm"))).format("HH:mm");
+        var timeSince = moment.utc(moment(now, "HH:mm").diff(moment(startTime, "HH:mm"))).format("HH:mm");
         var mins = moment.duration(timeSince).asMinutes();
-        var minsAway = frequency - (mins % frequency);
-        var nextTrain = moment().add(minsAway, "m").format("HH:mm");
+        minsAway = frequency - (mins % frequency);
+        nextTrain = moment().add(minsAway, "m").format("HH:mm");
+        
+        if ((frequency > 0) && (frequency < 500)) {
         tdName = $("<td>").append(childSnapshot.val().trainName);
         tdDest = $("<td>").append(childSnapshot.val().destination);
         tdFreq = $("<td>").append(childSnapshot.val().frequency);
         tdNextTrain = $("<td>").append(nextTrain);
         tdMinsAway = $("<td>").append(minsAway);
+        tdFreq.addClass("center");
+        tdNextTrain.addClass("center");
+        tdMinsAway.addClass("center bold");
+
         var tRow = $("<tr>").append(tdName, tdDest, tdStart, tdFreq, tdNextTrain, tdMinsAway);
         $(".train-table").append(tRow);
+        $("#trainName").val("");
+        $("#destination").val("");
+        $("#startTime").val("");
+        $("#frequency").val("");
+    //     console.log("valid? " + moment([startTime]).isValid());
+    //     console.log("start time 1" + moment([startTime]).format("HH:mm"));
+    } else {
+        alert("Please enter a valid Frequency");
+    return;
+    }
+        // console.log("startTime "  + startTime);
+        // console.log("T or F " + ((startTime).isInteger()));
     }, function (errorObject) {
         console.log("Errors handled: " + errorObject.code);
     });
+
+
 });
