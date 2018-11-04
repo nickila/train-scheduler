@@ -49,9 +49,9 @@ $(document).ready(function () {
         const pass = txtPassword.value;
         const auth = firebase.auth();
         const promise = auth.createUserWithEmailAndPassword(email, pass);
-        promise
-            .catch(e => console.log(e.message));
-        alert("success!")
+        promise.catch(e => console.log(e.message));
+        document.getElementById('txtEmail').value = '';
+        document.getElementById('txtPassword').value = '';
 
     });
     btnLogout.addEventListener("click", e => {

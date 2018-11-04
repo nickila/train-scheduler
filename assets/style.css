@@ -2,15 +2,16 @@ body {
     background-color: rgb(0, 131, 155);
     font-family: "Montserrat", sans-serif;
 }
+
 .table th, .table td { 
     border-top: none !important; 
 }
 
 th {
     font-size: 20px;
-    margin-right: 50px;
-    
+    margin-right: 50px; 
 }
+
 .train-table {
     font-size: 20px;
 }
@@ -31,8 +32,8 @@ th {
     font-size: 9rem;
     text-align: center;
     font-family: "Alfa Slab One", sans-serif;
-
 }
+
 .center {
     text-align: center;
 }
@@ -40,36 +41,43 @@ th {
 .lead {
     color: white;
     font-size: 2.5rem;
-    
 }
 
 .form-group {
     font-size: 20px;
     font-family: "Montserrat", sans-serif;
     color: white;
-
 }
+
 label {
     font-size: 20px;
 }
+
 #btnLogout {
     float: right;
     background-color: rgb(28, 165, 189);
     color: white;
 }
+
 #btnLogout:hover {
     background-color: rgb(0, 98, 116);
+}
+
+.user-enter {
+    margin-top: 15px;
 }
 .hide {
     display: none;
 }
+
 .login {
     display: none;
+    font-weight: bold;
 }
+
 h1 {
     color: white;
     font-family: "Montserrat", sans-serif;
-    font-weight: bold;
     font-size: 3rem;
     letter-spacing: 3px;
 }
