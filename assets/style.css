@@ -59,6 +59,7 @@ h1 {
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 3rem;
+    letter-spacing: 3px;
 }
 #trainName {
     font-size: 20px;
