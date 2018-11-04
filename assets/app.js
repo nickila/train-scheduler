@@ -24,8 +24,61 @@ $(document).ready(function () {
     arriving in 3 mins because current time minus start time equals 17 mins divided by 5 has a remainder
     of 2 and frequency time minus the remainder of those numbers equals three. So I would need a variable
     for the current time (now).
-    now - startTime      
+    now - startTime    
+    get Elements  
     */
+    const txtEmail = document.getElementById("txtEmail");
+    const txtPassword = document.getElementById("txtPassword");
+    const btnLogin = document.getElementById("btnLogin");
+    const btnSignUp = document.getElementById("btnSignUp");
+    const btnLogout = document.getElementById("btnLogout");
+
+    // add login 
+    btnLogin.addEventListener("click", e => {
+        const email = txtEmail.value;
+        const pass = txtPassword.value;
+        const auth = firebase.auth();
+        const promise = auth.signInWithEmailAndPassword(email, pass);
+        promise.catch(e => console.log(e.message));
+        document.getElementById('txtEmail').value = '';
+        document.getElementById('txtPassword').value = '';
+    });
+    //add sign up event
+    btnSignUp.addEventListener("click", e => {
+        const email = txtEmail.value;
+        const pass = txtPassword.value;
+        const auth = firebase.auth();
+        const promise = auth.createUserWithEmailAndPassword(email, pass);
+        promise
+            .catch(e => console.log(e.message));
+        alert("success!")
+
+    });
+    btnLogout.addEventListener("click", e => {
+        firebase.auth().signOut();
+    });
+
+    // Add a listener
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(firebaseUser) {
+            console.log(firebaseUser);
+            btnLogout.classList.remove("hide");
+            btnLogin.classList.add("login");
+            $(".auth").css("display", "inline");
+            $(".nonAuth").css("display", "none");
+            
+        } else {
+            console.log("not logged in");
+            btnLogout.classList.add("hide");
+            btnLogin.classList.remove("login");
+            btnSignUp.classList.remove("login");
+            $(".auth").css("display", "none");
+            $(".nonAuth").css("display", "inline");
+        }
+    });
+
+    
+   
     var trainName;
     var destination;
 
@@ -34,13 +87,13 @@ $(document).ready(function () {
         event.preventDefault();
 
         if (($("#trainName").val() == "") || ($("#trainName").val() == " ")) {
-            alert("Please enter a valid Train Name"); 
+            alert("Please enter a valid Train Name");
 
         } else {
             trainName = $("#trainName").val().trim();
         }
         if (($("#destination").val() == "") || ($("#destination").val() == " ")) {
-            alert("Please enter a valid Destination"); 
+            alert("Please enter a valid Destination");
         } else {
             destination = $("#destination").val().trim();
         }
@@ -50,14 +103,14 @@ $(document).ready(function () {
             startTime = $("#startTime").val().trim();
         }
         // if (($("#frequency").val().isInteger()) && ($("#frequency").val > 0) && ($("#frequency").val < 100)) {
-            if (($("#frequency").val() == "") || ($("#frequency").val() == " ") || ($("#frequency").val() < 1) || ($("#frequency").val() > 500)) {
-                alert("Please enter a valid Frequency");
-                return;
-            } else {
+        if (($("#frequency").val() == "") || ($("#frequency").val() == " ") || ($("#frequency").val() < 1) || ($("#frequency").val() > 500)) {
+            alert("Please enter a valid Frequency");
+            return;
+        } else {
             frequency = $("#frequency").val().trim();
-            
-        
-        
+
+
+
             database.ref().push({
                 trainName: trainName,
                 destination: destination,
@@ -66,7 +119,7 @@ $(document).ready(function () {
             });
 
         }
-       
+
     });
 
     var tdName;
@@ -99,9 +152,9 @@ $(document).ready(function () {
         $("#startTime").val("");
         $("#frequency").val("");
 
-    //     console.log("valid? " + moment([startTime]).isValid());
-    //     console.log("start time 1" + moment([startTime]).format("HH:mm"));
-    
+        //     console.log("valid? " + moment([startTime]).isValid());
+        //     console.log("start time 1" + moment([startTime]).format("HH:mm"));
+
         // console.log("startTime "  + startTime);
         // console.log("T or F " + ((startTime).isInteger()));
     }, function (errorObject) {

@@ -29,20 +29,20 @@
                 <!-- <div class="card mb-3"> -->
                 <!-- <div class="card-header">Today's trains</div> -->
                 <!-- <div class="card-body"> -->
-                    <h1>TODAY'S TRAINS</h1>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="header">TRAIN NAME</th>
-                                <th scope="col" class="header">DESTINATION</th>
-                                <th scope="col" class="header">FREQUENCY (mins)</th>
-                                <th scope="col" class="header">NEXT ARRIVAL</th>
-                                <th scope="col" class="header">MINS AWAY</th>
-                            </tr>
-                        </thead>
-                        <tbody class="train-table">
-                        </tbody>
-                    </table>
+                <h1>TODAY'S TRAINS</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="header">TRAIN NAME</th>
+                            <th scope="col" class="header">DESTINATION</th>
+                            <th scope="col" class="header">FREQUENCY (mins)</th>
+                            <th scope="col" class="header">NEXT ARRIVAL</th>
+                            <th scope="col" class="header">MINS AWAY</th>
+                        </tr>
+                    </thead>
+                    <tbody class="train-table">
+                    </tbody>
+                </table>
                 <!-- </div> -->
                 <!-- </div> -->
             </div>
@@ -50,35 +50,57 @@
 
             <div class="col-3">
                 <h1>ADD TRAIN</h1>
-                <!-- <div class="card mb-3">
+                <br />
+                
+            
+
+            <!-- <div class="card mb-3">
                     <div class="card-header">Add a train</div>
                     <div class="card-body"> -->
-                        <form>
-                            <div class="form-group">
-                                <label for="trainName">TRAIN NAME</label>
-                                <input type="trainName" class="form-control" id="trainName">
-                            </div>
-                            <div class="form-group">
-                                <label for="destination">DESTINATION</label>
-                                <input type="destination" class="form-control" id="destination">
-                            </div>
-                            <div class="form-group">
-                                <label for="firstTime">START TIME</label>
-                                <input type="time" class="form-control" id="startTime">
-                            </div>
-                            <div class="form-group">
-                                <label for="frequency">FREQUENCY(MIN)</label>
-                                <input type="number" class="form-control" id="frequency">
-                            </div>
-                            <button type="submit" class="btn btn-dark" id="submit">SUBMIT</button>
-                        </form>
-                    <!-- </div>
-                </div> -->
-            </div>
+            <form class="auth">
+                <div class="form-group">
+                    <label for="trainName" class="auth">TRAIN NAME</label>
+                    <input type="trainName" class="form-control auth" id="trainName">
+                </div>
+                <div class="form-group">
+                    <label for="destination" class="auth">DESTINATION</label>
+                    <input type="destination" class="form-control auth" id="destination">
+                </div>
+                <div class="form-group">
+                    <label for="firstTime" class="auth">START TIME</label>
+                    <input type="time" class="form-control auth" id="startTime">
+                </div>
+                <div class="form-group">
+                    <label for="frequency" class="auth">FREQUENCY(MIN)</label>
+                    <input type="number" class="form-control auth" id="frequency">
+                </div>
+                <button type="submit" class="btn btn-dark auth" id="submit">SUBMIT</button>
+                <button id="btnLogout" class="btn btn-action auth">
+                        LOG OUT
+                    </button>
+            </form>
+            <div class="form-group">
+                    <label for="email" class="nonAuth">EMAIL</label>
+                    <input id="txtEmail" type="email" class="form-control nonAuth">
+                </div>
+                <div class="form-group">
+                    <label for="password"  class="nonAuth">PASSWORD</label>
+                    <input id="txtPassword" type="password" class="form-control nonAuth">
+                </div>
+                <button id="btnLogin" class="btn btn-action nonAuth">
+                   LOGIN
+                </button>
+                <button id="btnSignUp" class="btn btn-action nonAuth">
+                    SIGN UP
+                </button>
+                
 
-            <script src="https://momentjs.com/downloads/moment.js"></script>
-            <script src="https://code.jquery.com/jquery.js"></script>
-            <script src="assets/app.js"></script>
+        </div>
+
+        <!-- <script src="assets/password.js"></script> -->
+        <script src="https://momentjs.com/downloads/moment.js"></script>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="assets/app.js"></script>
 
 </body>
 

@@ -51,8 +51,20 @@ th {
 }
 label {
     font-size: 20px;
-    
-
+}
+#btnLogout {
+    float: right;
+    background-color: rgb(28, 165, 189);
+    color: white;
+}
+#btnLogout:hover {
+    background-color: rgb(0, 98, 116);
+}
+.hide {
+    display: none;
+}
+.login {
+    display: none;
 }
 h1 {
     color: white;
