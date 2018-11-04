@@ -50,11 +50,12 @@ $(document).ready(function () {
             startTime = $("#startTime").val().trim();
         }
         // if (($("#frequency").val().isInteger()) && ($("#frequency").val > 0) && ($("#frequency").val < 100)) {
-            if (($("#frequency").val() == "") || ($("#frequency").val() == " ")) {
+            if (($("#frequency").val() == "") || ($("#frequency").val() == " ") || ($("#frequency").val() < 1) || ($("#frequency").val() > 500)) {
                 alert("Please enter a valid Frequency");
+                return;
             } else {
             frequency = $("#frequency").val().trim();
-            }
+            
         
         
             database.ref().push({
@@ -63,7 +64,8 @@ $(document).ready(function () {
                 startTime: startTime,
                 frequency: frequency
             });
-           
+
+        }
        
     });
 
@@ -82,8 +84,6 @@ $(document).ready(function () {
         var mins = moment.duration(timeSince).asMinutes();
         minsAway = frequency - (mins % frequency);
         nextTrain = moment().add(minsAway, "m").format("h:mm A");
-        
-        if ((frequency > 0) && (frequency < 500)) {
         tdName = $("<td>").append(childSnapshot.val().trainName);
         tdDest = $("<td>").append(childSnapshot.val().destination);
         tdFreq = $("<td>").append(childSnapshot.val().frequency);
@@ -92,19 +92,16 @@ $(document).ready(function () {
         tdFreq.addClass("center");
         tdNextTrain.addClass("center");
         tdMinsAway.addClass("center bold");
-
         var tRow = $("<tr>").append(tdName, tdDest, tdStart, tdFreq, tdNextTrain, tdMinsAway);
         $(".train-table").append(tRow);
         $("#trainName").val("");
         $("#destination").val("");
         $("#startTime").val("");
         $("#frequency").val("");
+
     //     console.log("valid? " + moment([startTime]).isValid());
     //     console.log("start time 1" + moment([startTime]).format("HH:mm"));
-    } else {
-        alert("Please enter a valid Frequency");
-    return;
-    }
+    
         // console.log("startTime "  + startTime);
         // console.log("T or F " + ((startTime).isInteger()));
     }, function (errorObject) {

@@ -1,33 +1,40 @@
 body {
-    background-color: lightcyan;
-    font-family: "Krub", sans-serif;
+    background-color: rgb(0, 131, 155);
+    font-family: "Montserrat", sans-serif;
 }
+.table th, .table td { 
+    border-top: none !important; 
+}
+
 th {
-    font-size: 24px;
+    font-size: 20px;
+    margin-right: 50px;
+    
 }
 .train-table {
     font-size: 20px;
 }
 
 .card-header {
-    background-color: #343a40;
+    background-color: none;
     color: white;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .table {
-    color: #343a40;
+    color: white;
+    margin-top: 25px;
 }
 
 .display-4 {
     color: white;
     font-size: 9rem;
     text-align: center;
+    font-family: "Alfa Slab One", sans-serif;
 
 }
 .center {
     text-align: center;
-    font-weight: bold;
 }
 
 .lead {
@@ -36,19 +43,42 @@ th {
     
 }
 
-.jumbotron {
-    background-color: #343a40;
-    padding: 30px;
-}
 .form-group {
     font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    color: white;
 
 }
 label {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 20px;
+    
 
+}
+h1 {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
 }
 #trainName {
     font-size: 20px;
+}
+.card {
+    background-color: transparent;
+}
+.form-control {
+    color: rgb(0, 131, 155);
+}
+.btn {
+    background-color: white;
+    color: rgb(0, 131, 155);
+    border: none;
+    
+}
+.btn:hover {
+    background-color:rgb(0, 98, 116);
+    color: white;
+}
+form {
+    margin-top: 37px;
 }

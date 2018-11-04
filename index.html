@@ -4,79 +4,81 @@
 <head>
     <meta charset="utf-8" />
     <title>TRAIN SCHEDULER</title>
-    <link href="https://fonts.googleapis.com/css?family=Krub" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/reset.css" />
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="jumbotron">
-                    <h1 class="display-4">TRAIN STATION</h1>
-                </div>
+
+                <h1 class="display-4">TRAIN STATION</h1>
+
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="card border-dark mb-3">
-                    <div class="card-header">Today's trains</div>
-                    <div class="card-body text-primary">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Train Name</th>
-                                    <th scope="col">Destination</th>
-                                    <th scope="col">Frequency(min)</th>
-                                    <th scope="col">Next Arrival</th>
-                                    <th scope="col">Minutes Away</th>
-                                </tr>
-                            </thead>
-                            <tbody class="train-table">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="col-9">
+                <!-- <div class="card mb-3"> -->
+                <!-- <div class="card-header">Today's trains</div> -->
+                <!-- <div class="card-body"> -->
+                    <h1>TODAY'S TRAINS</h1>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="header">TRAIN NAME</th>
+                                <th scope="col" class="header">DESTINATION</th>
+                                <th scope="col" class="header">FREQUENCY (mins)</th>
+                                <th scope="col" class="header">NEXT ARRIVAL</th>
+                                <th scope="col" class="header">MINS AWAY</th>
+                            </tr>
+                        </thead>
+                        <tbody class="train-table">
+                        </tbody>
+                    </table>
+                <!-- </div> -->
+                <!-- </div> -->
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card border-dark mb-3">
+
+
+            <div class="col-3">
+                <h1>ADD TRAIN</h1>
+                <!-- <div class="card mb-3">
                     <div class="card-header">Add a train</div>
-                    <div class="card-body text-dark">
+                    <div class="card-body"> -->
                         <form>
                             <div class="form-group">
-                                <label for="trainName">Train Name</label>
+                                <label for="trainName">TRAIN NAME</label>
                                 <input type="trainName" class="form-control" id="trainName">
                             </div>
                             <div class="form-group">
-                                <label for="destination">Destination</label>
+                                <label for="destination">DESTINATION</label>
                                 <input type="destination" class="form-control" id="destination">
                             </div>
                             <div class="form-group">
-                                <label for="firstTime">First Train Time</label>
+                                <label for="firstTime">START TIME</label>
                                 <input type="time" class="form-control" id="startTime">
                             </div>
                             <div class="form-group">
-                                <label for="frequency">Frequency (min)</label>
+                                <label for="frequency">FREQUENCY(MIN)</label>
                                 <input type="number" class="form-control" id="frequency">
                             </div>
-                            <button type="submit" class="btn btn-dark" id="submit">Submit</button>
+                            <button type="submit" class="btn btn-dark" id="submit">SUBMIT</button>
                         </form>
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
             </div>
-        </div>
-    </div>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="assets/app.js"></script>
+
+            <script src="https://momentjs.com/downloads/moment.js"></script>
+            <script src="https://code.jquery.com/jquery.js"></script>
+            <script src="assets/app.js"></script>
 
 </body>
 
