@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var config = {
         apiKey: "AIzaSyCcnMUobI4_PPEQE2-xPti995PfCY6Yt7E",
         authDomain: "briannickilaproject1.firebaseapp.com",
@@ -11,8 +10,6 @@ $(document).ready(function () {
     firebase.initializeApp(config);
     // Create a variable to reference the database.
     var database = firebase.database();
-    // var now = moment().format("h:mm");
-    // console.log(now);
     /*
     Set global variables-trainName, destination, frequency, startTime
     Send info to firebase
@@ -23,9 +20,7 @@ $(document).ready(function () {
     If start time is 3:00, and frequency is 5 mins and it's currently 3:17 the next train should be
     arriving in 3 mins because current time minus start time equals 17 mins divided by 5 has a remainder
     of 2 and frequency time minus the remainder of those numbers equals three. So I would need a variable
-    for the current time (now).
-    now - startTime    
-    get Elements  
+    for the current time (now). 
     */
     const txtEmail = document.getElementById("txtEmail");
     const txtPassword = document.getElementById("txtPassword");
@@ -43,6 +38,7 @@ $(document).ready(function () {
         document.getElementById('txtEmail').value = '';
         document.getElementById('txtPassword').value = '';
     });
+
     //add sign up event
     btnSignUp.addEventListener("click", e => {
         const email = txtEmail.value;
@@ -52,23 +48,21 @@ $(document).ready(function () {
         promise.catch(e => console.log(e.message));
         document.getElementById('txtEmail').value = '';
         document.getElementById('txtPassword').value = '';
-
     });
+
     btnLogout.addEventListener("click", e => {
         firebase.auth().signOut();
     });
 
     // Add a listener
     firebase.auth().onAuthStateChanged(firebaseUser => {
-        if(firebaseUser) {
-            console.log(firebaseUser);
+        if (firebaseUser) {
             btnLogout.classList.remove("hide");
             btnLogin.classList.add("login");
             $(".auth").css("display", "inline");
             $(".nonAuth").css("display", "none");
-            
+
         } else {
-            console.log("not logged in");
             btnLogout.classList.add("hide");
             btnLogin.classList.remove("login");
             btnSignUp.classList.remove("login");
@@ -77,18 +71,13 @@ $(document).ready(function () {
         }
     });
 
-    
-   
     var trainName;
     var destination;
 
-
     $("#submit").on("click", function (event) {
         event.preventDefault();
-
         if (($("#trainName").val() == "") || ($("#trainName").val() == " ")) {
             alert("Please enter a valid Train Name");
-
         } else {
             trainName = $("#trainName").val().trim();
         }
@@ -102,24 +91,18 @@ $(document).ready(function () {
         } else {
             startTime = $("#startTime").val().trim();
         }
-        // if (($("#frequency").val().isInteger()) && ($("#frequency").val > 0) && ($("#frequency").val < 100)) {
         if (($("#frequency").val() == "") || ($("#frequency").val() == " ") || ($("#frequency").val() < 1) || ($("#frequency").val() > 500)) {
             alert("Please enter a valid Frequency");
             return;
         } else {
             frequency = $("#frequency").val().trim();
-
-
-
             database.ref().push({
                 trainName: trainName,
                 destination: destination,
                 startTime: startTime,
                 frequency: frequency
             });
-
         }
-
     });
 
     var tdName;
@@ -151,15 +134,7 @@ $(document).ready(function () {
         $("#destination").val("");
         $("#startTime").val("");
         $("#frequency").val("");
-
-        //     console.log("valid? " + moment([startTime]).isValid());
-        //     console.log("start time 1" + moment([startTime]).format("HH:mm"));
-
-        // console.log("startTime "  + startTime);
-        // console.log("T or F " + ((startTime).isInteger()));
     }, function (errorObject) {
         console.log("Errors handled: " + errorObject.code);
     });
-
-
 });

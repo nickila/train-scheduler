@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(0, 131, 155);
+    background-color: rgb(0, 132, 165);
     font-family: "Montserrat", sans-serif;
 }
 
@@ -81,25 +81,30 @@ h1 {
     font-size: 3rem;
     letter-spacing: 3px;
 }
+
 #trainName {
     font-size: 20px;
 }
+
 .card {
     background-color: transparent;
 }
+
 .form-control {
     color: rgb(0, 131, 155);
 }
+
 .btn {
     background-color: white;
     color: rgb(0, 131, 155);
-    border: none;
-    
+    border: none;  
 }
+
 .btn:hover {
     background-color:rgb(0, 98, 116);
     color: white;
 }
+
 form {
     margin-top: 37px;
 }
