@@ -113,10 +113,10 @@ $(document).ready(function () {
     var nextTrain;
 
     database.ref().on("child_added", function (childSnapshot) {
-        var now = moment().format("h:mm A");
+        var now = moment().format("HH:mm");
         var frequency = parseInt(childSnapshot.val().frequency);
-        var startTime = moment(childSnapshot.val().startTime, "h:mm A").format("h:mm A");
-        var timeSince = moment.utc(moment(now, "h:mm A").diff(moment(startTime, "h:mm A"))).format("h:mm A");
+        var startTime = moment(childSnapshot.val().startTime, "HH:mm").format("HH:mm");
+        var timeSince = moment.utc(moment(now, "HH:mm").diff(moment(startTime, "HH:mm"))).format("HH:mm");
         var mins = moment.duration(timeSince).asMinutes();
         minsAway = frequency - (mins % frequency);
         nextTrain = moment().add(minsAway, "m").format("h:mm A");
@@ -134,6 +134,8 @@ $(document).ready(function () {
         $("#destination").val("");
         $("#startTime").val("");
         $("#frequency").val("");
+        console.log(minsAway);
+        console.log(frequency);
     }, function (errorObject) {
         console.log("Errors handled: " + errorObject.code);
     });
